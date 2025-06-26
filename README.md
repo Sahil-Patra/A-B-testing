@@ -152,7 +152,7 @@ plt.ylabel('Conversion Rate')
 plt.title('A/B Test Conversion Rate Comparison')
 plt.show()
 ```
-![Visual](assets/Screenshots/Com_Res.png)
+![Visual](assets/Screenshot/Com_Res.png)
 
 10. **Results & Interpretation**
    - No statistically significant difference found (p > 0.05).
