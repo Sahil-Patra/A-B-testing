@@ -49,7 +49,7 @@ This project focuses on conducting a statistical A/B test to evaluate whether a 
 
 ##  Project Workflow
 
-###1. **Data Loading and Cleaning**
+### 1. **Data Loading and Cleaning**
 ```python
 df = pd.read_csv("ab_data.csv")
 df.head(10)
@@ -63,7 +63,7 @@ df = df.drop_duplicates(subset='user_id')
    - Checked for duplicates and nulls
    - Ensured each user saw the correct page based on their assigned group
 
-###2. **Filtering valid test cases**
+### 2. **Filtering valid test cases**
 ```python
 df = df[((df['group'] == 'control') & (df['landing_page'] == 'old_page')) |
         ((df['group'] == 'treatment') & (df['landing_page'] == 'new_page'))]
@@ -72,7 +72,7 @@ Purpose:
 It ensures that Control group saw the old page & Treatment group saw the new page.This line filters out those inconsistent/mismatched records so the A/B test is fair and reliable.
 
 
-###3. **Create separate groups**
+### 3. **Create separate groups**
 ```python
 control = df[df['group'] == 'control']
 treatment = df[df['group'] == 'treatment']
@@ -80,7 +80,7 @@ treatment = df[df['group'] == 'treatment']
 Purpose:
 Create two subsets of the data — one for the control group and one for the treatment group.
 
-###4. **Calculate and display conversion rates**
+### 4. **Calculate and display conversion rates**
 ```python
 control_rate = control['converted'].mean()
 treatment_rate = treatment['converted'].mean()
@@ -97,14 +97,14 @@ Result:
 Purpose:
 Compute the average conversion in each group. Since converted is a binary column (0 or 1); .mean() gives the proportion of users who converted
 
-###5. **Import statsmodels for statistical test**
+### 5. **Import statsmodels for statistical test**
 ```python
 import statsmodels.api as sm
 ```
 Purpose:
 statsmodels is a statistical package in Python used here for performing a proportions z-test.
 
-###6. **Prepare inputs for the z-test**
+### 6. **Prepare inputs for the z-test**
 ```python
 convert = [treatment['converted'].sum(), control['converted'].sum()]
 n = [len(treatment), len(control)]
@@ -117,7 +117,7 @@ Sample size in each group → len(group)
 So: convert = [# conversions in treatment, # conversions in control]
 n = [# users in treatment, # users in control]
 
-###7. **Run the z-test**
+### 7. **Run the z-test**
 ```python
 z_score, p_value = sm.stats.proportions_ztest(convert, n)
 ```
@@ -128,7 +128,7 @@ p_value: the probability that the difference happened by chance
 
 If p_value < 0.05, we conclude the difference is statistically significant.
 
-###8. **Print the test result**
+### 8. **Print the test result**
 ```python
 print(f"Z-Score: {z_score:.2f}")
 print(f"P-Value: {p_value:.4f}")
@@ -144,7 +144,7 @@ Helps us accept or reject the null hypothesis:
 If p-value < 0.05, the new page has a significant impact.
 If p-value ≥ 0.05, there's no statistically significant difference.
 
-###9. **Vizualizing the difference**
+### 9. **Vizualizing the difference**
 ```python
 plt.bar(['Control', 'Treatment'], [control_rate, treatment_rate], color=['blue', 'orange'])
 plt.ylabel('Conversion Rate')
@@ -153,7 +153,7 @@ plt.show()
 ```
 ![Visual](assets/Screenshot/Com_Res.png)
 
-###10. **Results & Interpretation**
+### 10. **Results & Interpretation**
    - No statistically significant difference found (p > 0.05).
    - Recommendation: Keep current landing page as the default.
      
