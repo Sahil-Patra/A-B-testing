@@ -99,6 +99,7 @@ Result:
 |------------|------------------|
 | Control    | 12.04%           |
 | Treatment  | 11.88%           |
+|------------|------------------|
 
 Purpose:
 Print the conversion rates with 4 decimal places to compare the two groups.
