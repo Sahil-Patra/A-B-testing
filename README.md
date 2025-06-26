@@ -172,7 +172,7 @@ plt.show()
 ## **Contact info**
 **Sahil Patra**  
 GitHub: [Github-page](https://github.com/Sahil-Patra)  
-Email: sahilpatra1004@gmail.com
+Email: sahilpatra1004@gmail.com 
 Ph no.: +91 7735367833
 ---
 
